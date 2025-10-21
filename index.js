@@ -1,17 +1,33 @@
 // ClearCup App JavaScript
 // This will later connect to your backend via n8n
 
-// Fix viewport height on mobile - prevents initial jump
-function setViewportHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
+// Fix viewport height on mobile - MUST RUN IMMEDIATELY
+(function() {
+    function setViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
 
-// Set on load
-setViewportHeight();
-
-// Update on resize (handles orientation changes)
-window.addEventListener('resize', setViewportHeight);
+    // Set immediately
+    setViewportHeight();
+    
+    // Set again after a tiny delay to catch iOS adjustments
+    setTimeout(setViewportHeight, 0);
+    setTimeout(setViewportHeight, 100);
+    
+    // Update on resize and orientation change
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', function() {
+        setTimeout(setViewportHeight, 100);
+    });
+    
+    // Force recalculation when page becomes visible
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            setViewportHeight();
+        }
+    });
+})();
 
 // Prevent pull-to-refresh on mobile
 document.body.addEventListener('touchmove', function(e) {
@@ -20,7 +36,6 @@ document.body.addEventListener('touchmove', function(e) {
     }
     e.preventDefault();
 }, { passive: false });
-
 // App State - In production, this will be stored in Neon DB
 let appState = {
     currentCaffeine: 0,
