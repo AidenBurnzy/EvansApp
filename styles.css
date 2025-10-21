@@ -20,22 +20,50 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: var(--background);
+    background: #0a0612;
     color: var(--text-primary);
     overflow-x: hidden;
 }
 
-/* App Container - Mobile Size */
+/* Desktop: Show phone mockup in center */
+@media (min-width: 768px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 40px 20px;
+    }
+}
+
+/* App Container */
 .app-container {
-    width: 375px;
-    height: 812px;
-    margin: 0 auto;
     background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
     position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+
+/* Desktop: Phone mockup style */
+@media (min-width: 768px) {
+    .app-container {
+        width: 375px;
+        height: 812px;
+        border-radius: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+                    0 0 0 12px #1a1a1a,
+                    0 0 0 14px #3d3d3d;
+    }
+}
+
+/* Mobile: Full screen */
+@media (max-width: 767px) {
+    .app-container {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    }
 }
 
 /* Header */
@@ -98,6 +126,7 @@ body {
     padding: 20px;
     padding-bottom: 100px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Streak Section */
@@ -366,9 +395,11 @@ body {
 
 /* Bottom Navigation */
 .bottom-nav {
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    width: 375px;
+    left: 0;
+    right: 0;
+    width: 100%;
     background: rgba(45, 27, 78, 0.95);
     backdrop-filter: blur(10px);
     display: flex;
@@ -376,6 +407,14 @@ body {
     padding: 12px 0 20px 0;
     border-top: 1px solid rgba(233, 30, 140, 0.2);
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile: Account for safe area */
+@media (max-width: 767px) {
+    .bottom-nav {
+        position: fixed;
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
 }
 
 .nav-btn {
@@ -415,19 +454,19 @@ body {
 }
 
 /* Scrollbar Styling */
-.app-container::-webkit-scrollbar {
+.main-content::-webkit-scrollbar {
     width: 6px;
 }
 
-.app-container::-webkit-scrollbar-track {
+.main-content::-webkit-scrollbar-track {
     background: var(--background);
 }
 
-.app-container::-webkit-scrollbar-thumb {
+.main-content::-webkit-scrollbar-thumb {
     background: var(--primary-color);
     border-radius: 3px;
 }
 
-.app-container::-webkit-scrollbar-thumb:hover {
+.main-content::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
 }
