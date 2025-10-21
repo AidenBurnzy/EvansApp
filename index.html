@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearCup - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <span class="cup-icon">☕</span>
+                <h1>ClearCup</h1>
+            </div>
+            <button class="theme-btn" id="themeBtn">
+                <span class="theme-icon">🎨</span>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Streak Display -->
+            <section class="streak-section">
+                <div class="streak-circle">
+                    <div class="streak-number" id="streakNumber">0</div>
+                    <div class="streak-label">Day Streak</div>
+                </div>
+                <p class="streak-message" id="streakMessage">Start your journey today!</p>
+            </section>
+
+            <!-- Daily Goal -->
+            <section class="goal-section">
+                <h2>Today's Goal</h2>
+                <div class="goal-card">
+                    <div class="goal-info">
+                        <span class="goal-label">Caffeine Limit</span>
+                        <div class="goal-amount">
+                            <span class="current-amount" id="currentAmount">0</span>
+                            <span class="separator">/</span>
+                            <span class="goal-amount-target" id="goalAmount">200</span>
+                            <span class="unit">mg</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="actions-section">
+                <h2>Quick Log</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" data-amount="95">
+                        <span class="btn-icon">☕</span>
+                        <span class="btn-text">Coffee<br><small>95mg</small></span>
+                    </button>
+                    <button class="action-btn" data-amount="47">
+                        <span class="btn-icon">🍵</span>
+                        <span class="btn-text">Tea<br><small>47mg</small></span>
+                    </button>
+                    <button class="action-btn" data-amount="34">
+                        <span class="btn-icon">🥤</span>
+                        <span class="btn-text">Soda<br><small>34mg</small></span>
+                    </button>
+                    <button class="action-btn" data-amount="80">
+                        <span class="btn-icon">⚡</span>
+                        <span class="btn-text">Energy<br><small>80mg</small></span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Achievements Preview -->
+            <section class="achievements-section">
+                <div class="section-header">
+                    <h2>Achievements</h2>
+                    <a href="#" class="view-all">View All →</a>
+                </div>
+                <div class="achievement-cards">
+                    <div class="achievement-card locked">
+                        <div class="achievement-icon">🔒</div>
+                        <div class="achievement-info">
+                            <h3>First Step</h3>
+                            <p>Complete 1 day</p>
+                            <span class="unlock-badge">Unlocks: Sunset Theme</span>
+                        </div>
+                    </div>
+                    <div class="achievement-card locked">
+                        <div class="achievement-icon">🔒</div>
+                        <div class="achievement-info">
+                            <h3>Week Warrior</h3>
+                            <p>7 day streak</p>
+                            <span class="unlock-badge">Unlocks: Ocean Theme</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-btn">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Stats</span>
+            </button>
+            <button class="nav-btn">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-label">Achievements</span>
+            </button>
+            <button class="nav-btn">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

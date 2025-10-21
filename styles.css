@@ -1,0 +1,433 @@
+/* CSS Variables for Theme System */
+:root {
+    --primary-color: #6B2D8F;
+    --secondary-color: #E91E8C;
+    --background: #1A0B2E;
+    --surface: #2D1B4E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B8A6D9;
+    --accent-glow: rgba(233, 30, 140, 0.3);
+    --success: #4CAF50;
+    --border-radius: 20px;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* App Container - Mobile Size */
+.app-container {
+    width: 375px;
+    height: 812px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 10px 20px;
+    background: rgba(45, 27, 78, 0.5);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cup-icon {
+    font-size: 28px;
+    filter: grayscale(100%);
+}
+
+.logo h1 {
+    font-size: 24px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.theme-btn {
+    background: var(--surface);
+    border: 2px solid var(--secondary-color);
+    border-radius: 12px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.theme-icon {
+    font-size: 22px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    padding-bottom: 100px;
+    overflow-y: auto;
+}
+
+/* Streak Section */
+.streak-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.streak-circle {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.streak-circle::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: var(--background);
+}
+
+.streak-number {
+    font-size: 56px;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.streak-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 1;
+    margin-top: -5px;
+}
+
+.streak-message {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+/* Goal Section */
+.goal-section {
+    margin-bottom: 30px;
+}
+
+.goal-section h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+}
+
+.goal-card {
+    background: var(--surface);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(233, 30, 140, 0.2);
+}
+
+.goal-info {
+    margin-bottom: 15px;
+}
+
+.goal-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.goal-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.current-amount {
+    color: var(--secondary-color);
+}
+
+.separator {
+    color: var(--text-secondary);
+    font-size: 28px;
+}
+
+.goal-amount-target {
+    color: var(--text-secondary);
+}
+
+.unit {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-left: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(107, 45, 143, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* Actions Section */
+.actions-section {
+    margin-bottom: 30px;
+}
+
+.actions-section h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.action-btn {
+    background: var(--surface);
+    border: 2px solid rgba(233, 30, 140, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 36px;
+}
+
+.btn-text {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn-text small {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+/* Achievements Section */
+.achievements-section {
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.view-all {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.achievement-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.achievement-card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    border: 2px solid rgba(233, 30, 140, 0.2);
+    transition: all 0.3s ease;
+}
+
+.achievement-card.locked {
+    opacity: 0.7;
+}
+
+.achievement-card:hover {
+    transform: translateX(5px);
+    border-color: var(--secondary-color);
+}
+
+.achievement-icon {
+    font-size: 40px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(107, 45, 143, 0.3);
+    border-radius: 12px;
+}
+
+.achievement-info h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.achievement-info p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.unlock-badge {
+    font-size: 11px;
+    color: var(--secondary-color);
+    background: rgba(233, 30, 140, 0.2);
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 375px;
+    background: rgba(45, 27, 78, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0 20px 0;
+    border-top: 1px solid rgba(233, 30, 140, 0.2);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 12px;
+}
+
+.nav-btn:hover {
+    background: rgba(233, 30, 140, 0.1);
+}
+
+.nav-btn.active {
+    color: var(--secondary-color);
+}
+
+.nav-btn.active .nav-icon {
+    transform: scale(1.1);
+}
+
+.nav-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.nav-label {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Scrollbar Styling */
+.app-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.app-container::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+.app-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.app-container::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
