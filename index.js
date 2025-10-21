@@ -1,41 +1,43 @@
 // ClearCup App JavaScript
 // This will later connect to your backend via n8n
 
-// Fix viewport height on mobile - MUST RUN IMMEDIATELY
-(function() {
-    function setViewportHeight() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-
-    // Set immediately
-    setViewportHeight();
-    
-    // Set again after a tiny delay to catch iOS adjustments
-    setTimeout(setViewportHeight, 0);
-    setTimeout(setViewportHeight, 100);
-    
-    // Update on resize and orientation change
-    window.addEventListener('resize', setViewportHeight);
-    window.addEventListener('orientationchange', function() {
-        setTimeout(setViewportHeight, 100);
-    });
-    
-    // Force recalculation when page becomes visible
-    document.addEventListener('visibilitychange', function() {
-        if (!document.hidden) {
-            setViewportHeight();
+// Prevent pull-to-refresh and overscroll on mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Prevent pull-to-refresh
+    document.body.addEventListener('touchmove', function(e) {
+        if (e.target.closest('.main-content')) {
+            return; // Allow scrolling in main content
         }
-    });
-})();
-
-// Prevent pull-to-refresh on mobile
-document.body.addEventListener('touchmove', function(e) {
-    if (e.target.closest('.main-content')) {
-        return; // Allow scrolling in main content
-    }
-    e.preventDefault();
-}, { passive: false });
+        e.preventDefault();
+    }, { passive: false });
+    
+    // Prevent bounce/overscroll
+    let lastTouchY = 0;
+    document.body.addEventListener('touchstart', function(e) {
+        lastTouchY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    document.body.addEventListener('touchmove', function(e) {
+        const touchY = e.touches[0].clientY;
+        const touchYDelta = touchY - lastTouchY;
+        lastTouchY = touchY;
+        
+        const mainContent = document.querySelector('.main-content');
+        if (e.target.closest('.main-content')) {
+            const scrollTop = mainContent.scrollTop;
+            const scrollHeight = mainContent.scrollHeight;
+            const clientHeight = mainContent.clientHeight;
+            
+            // Prevent overscroll at top and bottom
+            if ((scrollTop === 0 && touchYDelta > 0) || 
+                (scrollTop + clientHeight >= scrollHeight && touchYDelta < 0)) {
+                e.preventDefault();
+            }
+        } else {
+            e.preventDefault();
+        }
+    }, { passive: false });
+});
 // App State - In production, this will be stored in Neon DB
 let appState = {
     currentCaffeine: 0,
